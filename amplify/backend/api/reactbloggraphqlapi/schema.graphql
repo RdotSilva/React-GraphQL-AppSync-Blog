@@ -17,3 +17,11 @@ type Comment @model {
   content: String!
   createdAt: String!
 }
+
+type Like @model {
+  id: ID!
+  numberLikes: Int!
+  likeOwnerId: String!
+  likeOwnerUsername: String!
+  post: Post @connection(name: "PostLikes")
+}
