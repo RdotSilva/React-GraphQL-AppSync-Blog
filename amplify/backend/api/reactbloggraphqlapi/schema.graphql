@@ -1,5 +1,10 @@
-type Todo @model {
+type Post @model {
   id: ID!
-  name: String!
-  description: String
+  postOwnerId: String!
+  postOwnerUsername: String!
+  postTitle: String!
+  postBody: String!
+  createdAt: String
+  comments: [Comment] @connection(name: "PostComments") #relationship
+  likes: [Like] @connection(name: "PostLikes")
 }
