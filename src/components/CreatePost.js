@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 
 class CreatePost extends Component {
+  state = {
+    postOwnerId: "",
+    postOwner: "",
+    postTitle: "",
+    postBody: ""
+  };
+
+  componentDidMount = async () => {
+    // TODO
+  };
+
   render() {
     return (
       <form className="add-post">
