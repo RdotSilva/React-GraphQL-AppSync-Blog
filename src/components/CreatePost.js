@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { API, graphqlOperation } from "aws-amplify";
+import { createPost } from "./../graphql/mutations";
 
 class CreatePost extends Component {
   state = {
@@ -22,6 +24,10 @@ class CreatePost extends Component {
       postBody: this.state.postBody,
       createAt: new Date().toISOString()
     };
+
+    await API.graphql(graphqlOperation(createPost, { input }));
+
+    this.setState({ postTitle: "", postBody: "" });
   };
 
   render() {
