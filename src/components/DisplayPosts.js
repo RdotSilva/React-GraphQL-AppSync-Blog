@@ -9,7 +9,7 @@ export default class DisplayPosts extends Component {
 
   getPosts = async () => {
     const result = await API.graphql(graphqlOperation(listPosts));
-    console.log(`All Posts: JSON.stringify(${result.data.listPosts.items})`);
+    console.log("All Posts: ", JSON.stringify(result.data.listPosts.items));
   };
 
   render() {
