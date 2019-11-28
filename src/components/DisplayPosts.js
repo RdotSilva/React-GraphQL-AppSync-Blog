@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { listPosts } from "../graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
+import DeletePost from "./DeletePost";
 
 class DisplayPosts extends Component {
   state = {
@@ -31,6 +32,10 @@ class DisplayPosts extends Component {
             </time>
           </span>
           <p>{post.postBody}</p>
+          <br />
+          <span>
+            <DeletePost />
+          </span>
         </div>
       );
     });
