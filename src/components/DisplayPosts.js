@@ -3,13 +3,17 @@ import { listPosts } from "../graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
 
 export default class DisplayPosts extends Component {
+  state = {
+    posts: []
+  };
+
   componentDidMount = async () => {
     this.getPosts();
   };
 
   getPosts = async () => {
     const result = await API.graphql(graphqlOperation(listPosts));
-    console.log("All Posts: ", JSON.stringify(result.data.listPosts.items));
+    this.setState({ posts: result.data.listPosts.items });
   };
 
   render() {
