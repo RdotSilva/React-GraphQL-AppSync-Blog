@@ -12,9 +12,21 @@ class CreatePost extends Component {
     // TODO
   };
 
+  handleAddPost = async e => {
+    e.preventDefault();
+
+    const input = {
+      postOwnerId: this.state.postOwnerId,
+      postOwnerUsername: this.state.postOwnerUsername,
+      postTitle: this.state.postTitle,
+      postBody: this.state.postBody,
+      createAt: new Date().toISOString()
+    };
+  };
+
   render() {
     return (
-      <form className="add-post">
+      <form className="add-post" onSubmit={this.handleAddPost}>
         <input
           style={{ font: "19px" }}
           type="text"
