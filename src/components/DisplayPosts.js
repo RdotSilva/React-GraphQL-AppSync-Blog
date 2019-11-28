@@ -17,6 +17,19 @@ export default class DisplayPosts extends Component {
   };
 
   render() {
-    return <div>Display Posts</div>;
+    const { posts } = this.state;
+    return posts.map(post => {
+      return (
+        <div className="posts" key={post.id}>
+          <h1>{post.postTitle}</h1>
+          <span>
+            {"Wrote by: "} {post.postOwnerUsername}
+            {" on"}
+            <time> {new Date(post.createdAt).toDateString()}</time>
+          </span>
+          <p>{post.postBody}</p>
+        </div>
+      );
+    });
   }
 }
