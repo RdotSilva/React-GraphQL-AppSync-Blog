@@ -3,6 +3,7 @@ import { listPosts } from "../graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
 import DeletePost from "./DeletePost";
 import EditPost from "./EditPost";
+import { onCreatePost } from "./../graphql/subscriptions";
 
 class DisplayPosts extends Component {
   state = {
@@ -11,6 +12,8 @@ class DisplayPosts extends Component {
 
   componentDidMount = async () => {
     this.getPosts();
+
+    this.createPostListener = API.graphql(graphqlOperation(onCreatePost));
   };
 
   getPosts = async () => {
