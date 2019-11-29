@@ -22,11 +22,11 @@ class CreatePost extends Component {
     e.preventDefault();
 
     const input = {
-      postOwnerId: this.state.postOwnerId,
-      postOwnerUsername: this.state.postOwnerUsername,
+      postOwnerId: "ryaA829", // Temp hard coded value
+      postOwnerUsername: "Ryan", // Temp hard coded value
       postTitle: this.state.postTitle,
       postBody: this.state.postBody,
-      createAt: new Date().toISOString()
+      createdAt: new Date().toISOString()
     };
 
     await API.graphql(graphqlOperation(createPost, { input }));
