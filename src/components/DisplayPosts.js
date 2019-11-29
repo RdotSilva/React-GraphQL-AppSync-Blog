@@ -27,6 +27,10 @@ class DisplayPosts extends Component {
     });
   };
 
+  componentWillUnmount = () => {
+    this.createPostListener.unsubscribe();
+  };
+
   getPosts = async () => {
     const result = await API.graphql(graphqlOperation(listPosts));
     this.setState({ posts: result.data.listPosts.items });
