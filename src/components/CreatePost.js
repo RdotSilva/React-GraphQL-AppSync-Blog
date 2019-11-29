@@ -14,6 +14,10 @@ class CreatePost extends Component {
     // TODO
   };
 
+  handleChangePost = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   handleAddPost = async e => {
     e.preventDefault();
 
@@ -34,11 +38,15 @@ class CreatePost extends Component {
     return (
       <form className="add-post" onSubmit={this.handleAddPost}>
         <input
-          style={{ font: "19px" }}
+          style={{ fontSize: "19px" }}
           type="text"
           placeholder="Title"
+          name="postTitle"
           required
+          value={this.state.postTitle}
+          onChange={this.handleChangePost}
         />
+
         <textarea
           type="text"
           name="postBody"
@@ -46,6 +54,8 @@ class CreatePost extends Component {
           columns="40"
           required
           placeholder="New Blog Post"
+          value={this.state.postBody}
+          onChange={this.handleChangePost}
         ></textarea>
 
         <input className="btn" style={{ fontSize: "19px" }} type="submit" />
