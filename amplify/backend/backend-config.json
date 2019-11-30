@@ -16,5 +16,12 @@
 				}
 			}
 		}
+	},
+	"auth": {
+		"reactappsyncblog0ac971c2": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
 	}
 }
