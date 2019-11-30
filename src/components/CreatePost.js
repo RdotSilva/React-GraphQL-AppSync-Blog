@@ -5,7 +5,7 @@ import { createPost } from "./../graphql/mutations";
 class CreatePost extends Component {
   state = {
     postOwnerId: "",
-    postOwner: "",
+    postOwnerUsername: "",
     postTitle: "",
     postBody: ""
   };
@@ -14,7 +14,7 @@ class CreatePost extends Component {
     await Auth.currentUserInfo().then(user => {
       this.setState({
         postOwnerId: user.attributes.sub,
-        postOwner: user.username
+        postOwnerUsername: user.username
       });
     });
   };
@@ -27,8 +27,8 @@ class CreatePost extends Component {
     e.preventDefault();
 
     const input = {
-      postOwnerId: "ryaA829", // Temp hard coded value
-      postOwnerUsername: "Ryan", // Temp hard coded value
+      postOwnerId: this.state.postOwnerId,
+      postOwnerUsername: this.state.postOwnerUsername,
       postTitle: this.state.postTitle,
       postBody: this.state.postBody,
       createdAt: new Date().toISOString()
