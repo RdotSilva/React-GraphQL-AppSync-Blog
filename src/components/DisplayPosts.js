@@ -27,20 +27,21 @@ class DisplayPosts extends Component {
     });
 
     this.deletePostListener = API.graphql(
-      graphqlOperation(onDeletePost).subscribe({
-        next: postData => {
-          const deletedPost = postData.value.data.onDeletePost;
-          const updatedPosts = this.state.posts.filter(
-            post => post.id !== deletedPost.id
-          );
-          this.setState({ posts: updatedPosts });
-        }
-      })
-    );
+      graphqlOperation(onDeletePost)
+    ).subscribe({
+      next: postData => {
+        const deletedPost = postData.value.data.onDeletePost;
+        const updatedPosts = this.state.posts.filter(
+          post => post.id !== deletedPost.id
+        );
+        this.setState({ posts: updatedPosts });
+      }
+    });
   };
 
   componentWillUnmount = () => {
     this.createPostListener.unsubscribe();
+    this.deletePostListener.unsubscribe();
   };
 
   getPosts = async () => {
