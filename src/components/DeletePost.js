@@ -3,6 +3,13 @@ import { graphqlOperation } from "aws-amplify";
 import { deletePost } from "./../graphql/mutations";
 
 class DeletePost extends Component {
+  handleDeletePost = async postId => {
+    const input = {
+      id: postId
+    };
+    await API.graphql(graphqlOperation(deletePost, { input }));
+  };
+
   render() {
     const post = this.props.data;
 
