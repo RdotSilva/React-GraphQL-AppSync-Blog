@@ -3,7 +3,7 @@ import { listPosts } from "../graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
 import DeletePost from "./DeletePost";
 import EditPost from "./EditPost";
-import { onCreatePost } from "./../graphql/subscriptions";
+import { onCreatePost, onDeletePost } from "./../graphql/subscriptions";
 
 class DisplayPosts extends Component {
   state = {
@@ -25,6 +25,18 @@ class DisplayPosts extends Component {
         this.setState({ posts: updatedPosts });
       }
     });
+
+    this.deletePostListener = API.graphql(
+      graphqlOperation(onDeletePost).subscribe({
+        next: postData => {
+          const deletedPost = postData.value.data.onDeletePost;
+          const updatedPosts = this.state.posts.filter(
+            post => post.id !== deletedPost.id
+          );
+          this.setState({ posts: updatedPosts });
+        }
+      })
+    );
   };
 
   componentWillUnmount = () => {
