@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import { deletePost } from "./../graphql/mutations";
 
 class DeletePost extends Component {
