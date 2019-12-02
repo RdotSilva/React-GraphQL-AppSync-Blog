@@ -49,8 +49,15 @@ class EditPost extends Component {
                 name="postTitle"
                 value={this.state.postData.postTitle}
                 onChange={this.handleTitle}
-              ></input>
-              <button></button>
+              />
+              <input
+                style={{ height: "150px", fontSize: "19px" }}
+                type="text"
+                name="postBody"
+                value={this.state.postData.postBody}
+                onChange={this.handleBody}
+              />
+              <button>Update Post</button>
             </form>
           </div>
         )}
