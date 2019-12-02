@@ -27,6 +27,12 @@ class EditPost extends Component {
     });
   };
 
+  handleBody = event => {
+    this.setState({
+      postData: { ...this.state.postData, postBody: event.target.value }
+    });
+  };
+
   componentDidMount = async () => {
     await Auth.currentUserInfo().then(user => {
       this.setState({
