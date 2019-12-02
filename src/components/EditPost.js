@@ -21,6 +21,12 @@ class EditPost extends Component {
     document.documentElement.scrollTop = 0;
   };
 
+  handleTitle = event => {
+    this.setState({
+      postData: { ...this.state.postData, postTitle: event.target.value }
+    });
+  };
+
   componentDidMount = async () => {
     await Auth.currentUserInfo().then(user => {
       this.setState({
