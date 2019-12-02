@@ -38,6 +38,20 @@ class EditPost extends Component {
             <button className="close" onClick={this.handleModal}>
               X
             </button>
+            <form
+              className="add-post"
+              onSubmit={event => this.handleUpdatePost(event)}
+            >
+              <input
+                style={{ fontSize: "19px" }}
+                type="text"
+                placeholder="Title"
+                name="postTitle"
+                value={this.state.postData.postTitle}
+                onChange={this.handleTitle}
+              ></input>
+              <button></button>
+            </form>
           </div>
         )}
         <button onClick={this.handleModal}>Edit</button>;
