@@ -10,6 +10,12 @@ class EditPost extends Component {
     postBody: ""
   };
 
+  handleModal = () => {
+    this.setState({ show: !this.state.show });
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
+
   componentDidMount = async () => {
     await Auth.currentUserInfo().then(user => {
       this.setState({
@@ -20,7 +26,7 @@ class EditPost extends Component {
   };
 
   render() {
-    return <button>Edit</button>;
+    return <button onClick={this.handleModal}>Edit</button>;
   }
 }
 
