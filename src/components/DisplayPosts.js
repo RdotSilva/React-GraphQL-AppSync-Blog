@@ -63,6 +63,7 @@ class DisplayPosts extends Component {
   componentWillUnmount = () => {
     this.createPostListener.unsubscribe();
     this.deletePostListener.unsubscribe();
+    this.updatePostListener.unsubscribe();
   };
 
   getPosts = async () => {
