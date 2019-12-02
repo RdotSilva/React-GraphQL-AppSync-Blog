@@ -91,7 +91,7 @@ class EditPost extends Component {
             </form>
           </div>
         )}
-        <button onClick={this.handleModal}>Edit</button>;
+        <button onClick={this.handleModal}>Edit</button>
       </>
     );
   }
