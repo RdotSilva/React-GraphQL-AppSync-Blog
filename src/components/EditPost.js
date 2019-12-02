@@ -10,6 +10,15 @@ class EditPost extends Component {
     postBody: ""
   };
 
+  componentDidMount = async () => {
+    await Auth.currentUserInfo().then(user => {
+      this.setState({
+        postOwnerId: user.attributes.sub,
+        postOwnerUsername: user.username
+      });
+    });
+  };
+
   render() {
     return <button>Edit</button>;
   }
