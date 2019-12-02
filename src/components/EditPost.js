@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Auth } from "aws-amplify";
 
 class EditPost extends Component {
   state = {
@@ -26,7 +27,18 @@ class EditPost extends Component {
   };
 
   render() {
-    return <button onClick={this.handleModal}>Edit</button>;
+    return (
+      <>
+        {this.state.show && (
+          <div className="modal">
+            <button className="close" onClick={this.handleModal}>
+              X
+            </button>
+          </div>
+        )}
+        <button onClick={this.handleModal}>Edit</button>;
+      </>
+    );
   }
 }
 
