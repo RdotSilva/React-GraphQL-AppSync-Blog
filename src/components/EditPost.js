@@ -8,7 +8,11 @@ class EditPost extends Component {
     postOwnerId: "",
     postOwnerUsername: "",
     powerTitle: "",
-    postBody: ""
+    postBody: "",
+    postData: {
+      postTitle: this.props.postTitle,
+      postBody: this.props.postBody
+    }
   };
 
   handleModal = () => {
