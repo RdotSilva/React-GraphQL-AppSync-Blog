@@ -18,7 +18,26 @@ class CreateCommentPost extends Component {
   };
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <form>
+          <textarea
+            type="text"
+            name="content"
+            rows="3"
+            cols="40"
+            placeholder="Add Your Comment..."
+            value={this.state.content}
+            onChange={this.handleChangeContent}
+          />
+          <input
+            className="btn"
+            style={{ fontSize: "19px" }}
+            value="Add Comment"
+          />
+        </form>
+      </div>
+    );
   }
 }
 
