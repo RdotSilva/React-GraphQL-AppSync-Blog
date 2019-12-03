@@ -53,7 +53,12 @@ export const listPosts = `query ListPosts(
           createdAt
       }
       likes {
-        nextToken
+        items {
+          id
+          numberLikes
+          likeOwnerId
+          likeOwnerUsername
+        }
       }
     }
     nextToken
