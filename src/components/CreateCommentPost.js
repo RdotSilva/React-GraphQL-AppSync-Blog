@@ -17,10 +17,15 @@ class CreateCommentPost extends Component {
     });
   };
 
+  handleChangeContent = event =>
+    this.setState({
+      content: event.target.value
+    });
+
   render() {
     return (
       <div>
-        <form>
+        <form className="add-comment" onSubmit={this.handleAddComment}>
           <textarea
             type="text"
             name="content"
