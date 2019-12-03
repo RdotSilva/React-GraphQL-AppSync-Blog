@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
+import { createComment } from "../graphql/mutations";
 
 class CreateCommentPost extends Component {
   state = {
@@ -21,6 +23,22 @@ class CreateCommentPost extends Component {
     this.setState({
       content: event.target.value
     });
+
+  handleAddComment = async event => {
+    event.preventDefault();
+
+    const input = {
+      commentPostId: this.props.postId,
+      commentOwnerId: this.state.commentOwnerId,
+      commentOwnerUsername: this.state.commentOwnerUsername,
+      content: this.state.content,
+      createdAt: new Date().toISOString()
+    };
+
+    await API.graphql(graphqlOperation(createComment, { input }));
+
+    this.setState({ content: "" });
+  };
 
   render() {
     return (
