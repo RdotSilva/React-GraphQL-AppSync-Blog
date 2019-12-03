@@ -51,6 +51,7 @@ export const listPosts = `query ListPosts(
           commentOwnerUsername
           content
           createdAt
+        }
       }
       likes {
         items {
