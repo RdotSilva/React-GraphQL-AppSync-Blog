@@ -6,7 +6,8 @@ import EditPost from "./EditPost";
 import {
   onCreatePost,
   onDeletePost,
-  onUpdatePost
+  onUpdatePost,
+  onCreateComment
 } from "./../graphql/subscriptions";
 import CreateCommentPost from "./CreateCommentPost";
 
@@ -49,7 +50,7 @@ class DisplayPosts extends Component {
       next: postData => {
         const { posts } = this.state;
         const updatedPost = postData.value.data.onUpdatePost;
-        const index = posts.findIndex(post => post.id == updatedPost);
+        const index = posts.findIndex(post => post.id === updatedPost);
         const updatedPosts = [
           ...posts.slice(0, index),
           updatedPost,
@@ -57,6 +58,24 @@ class DisplayPosts extends Component {
         ];
 
         this.setState({ posts: updatedPosts });
+      }
+    });
+    this.createPostCommentListener = API.graphql(
+      graphqlOperation(onCreateComment)
+    ).subscribe({
+      next: commentData => {
+        console.log(
+          "Shoot:",
+          JSON.stringify(commentData.value.data.onCreateComment)
+        );
+        const createdComment = commentData.value.data.onCreateComment;
+        let posts = [...this.state.posts];
+        for (let post of posts) {
+          if (createdComment.post.id === post.id) {
+            post.comments.items.push(createdComment);
+          }
+        }
+        this.setState({ posts });
       }
     });
   };
