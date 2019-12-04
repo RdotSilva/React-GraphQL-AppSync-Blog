@@ -155,6 +155,11 @@ class DisplayPosts extends Component {
           <span>
             <DeletePost data={post} />
             <EditPost {...post} />
+            <span>
+              <p onClick={() => this.handleLike(post.id)}>
+                <FaThumbsUp />
+              </p>
+            </span>
           </span>
           <span>
             <CreateCommentPost postId={post.id} />
