@@ -122,6 +122,20 @@ class DisplayPosts extends Component {
     this.setState({ posts: result.data.listPosts.items });
   };
 
+  likedPost = postId => {
+    for (let post of this.state.posts) {
+      if (post.id === postId) {
+        if (post.postOwnerId === this.state.ownerId) return true;
+        for (let like of this.state.posts.likes.items) {
+          if (like.likeOwnerId === this.state.ownerId) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  };
+
   render() {
     const { posts } = this.state;
     return posts.map(post => {
