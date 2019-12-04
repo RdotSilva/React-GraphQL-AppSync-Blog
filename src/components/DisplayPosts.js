@@ -11,6 +11,7 @@ import {
   onCreateComment,
   onCreateLike
 } from "./../graphql/subscriptions";
+import { createLike } from "../graphql/mutations";
 import CreateCommentPost from "./CreateCommentPost";
 import CommentPost from "./CommentPost";
 import { FaThumbsUp } from "react-icons/fa";
@@ -136,6 +137,22 @@ class DisplayPosts extends Component {
     return false;
   };
 
+  handleLike = async postId => {
+    const input = {
+      numberLikes: 1,
+      likeOwnerId: this.state.ownerId,
+      likeOwnerUsername: this.state.ownerUsername,
+      likePostId: postId
+    };
+
+    try {
+      const result = await API.graphql(graphqlOperation(createLike, { input }));
+      console.log("Liked: ", result.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   render() {
     const { posts } = this.state;
     return posts.map(post => {
@@ -158,6 +175,7 @@ class DisplayPosts extends Component {
             <span>
               <p onClick={() => this.handleLike(post.id)}>
                 <FaThumbsUp />
+                {post.likes.items.length}
               </p>
             </span>
           </span>
