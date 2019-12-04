@@ -16,6 +16,9 @@ import { FaThumbsUp } from "react-icons/fa";
 
 class DisplayPosts extends Component {
   state = {
+    ownerId: "",
+    ownerUsername: "",
+    isHovering: false,
     posts: []
   };
 
