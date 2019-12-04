@@ -103,6 +103,7 @@ class DisplayPosts extends Component {
     this.deletePostListener.unsubscribe();
     this.updatePostListener.unsubscribe();
     this.createPostCommentListener.unsubscribe();
+    this.createPostLikeListener.unsubscribe();
   };
 
   getPosts = async () => {
