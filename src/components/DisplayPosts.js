@@ -7,10 +7,12 @@ import {
   onCreatePost,
   onDeletePost,
   onUpdatePost,
-  onCreateComment
+  onCreateComment,
+  onCreateLike
 } from "./../graphql/subscriptions";
 import CreateCommentPost from "./CreateCommentPost";
 import CommentPost from "./CommentPost";
+import { FaThumbsUp } from "react-icons/fa";
 
 class DisplayPosts extends Component {
   state = {
@@ -74,6 +76,21 @@ class DisplayPosts extends Component {
         for (let post of posts) {
           if (createdComment.post.id === post.id) {
             post.comments.items.push(createdComment);
+          }
+        }
+        this.setState({ posts });
+      }
+    });
+    this.createPostLikeListener = API.graphql(
+      graphqlOperation(onCreateLike)
+    ).subscribe({
+      next: postData => {
+        const createdLike = postData.value.data.onCreateLike;
+
+        let posts = [...this.state.posts];
+        for (let post of posts) {
+          if (createdLike.post.id === post.id) {
+            post.likes.items.push(createdLike);
           }
         }
         this.setState({ posts });
