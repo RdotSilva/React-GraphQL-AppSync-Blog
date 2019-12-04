@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { listPosts } from "../graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
+import { Auth } from "aws-amplify";
 import DeletePost from "./DeletePost";
 import EditPost from "./EditPost";
 import {
@@ -24,6 +25,13 @@ class DisplayPosts extends Component {
 
   componentDidMount = async () => {
     this.getPosts();
+
+    await Auth.currentUserInfo().then(user => {
+      this.setState({
+        ownerId: user.attributes.sub,
+        ownerUsername: user.username
+      });
+    });
 
     this.createPostListener = API.graphql(
       graphqlOperation(onCreatePost)
