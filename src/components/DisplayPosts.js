@@ -14,7 +14,7 @@ import {
 import { createLike } from "../graphql/mutations";
 import CreateCommentPost from "./CreateCommentPost";
 import CommentPost from "./CommentPost";
-import { FaThumbsUp } from "react-icons/fa";
+import { FaThumbsUp, FaSadTear } from "react-icons/fa";
 
 class DisplayPosts extends Component {
   state = {
@@ -216,6 +216,18 @@ class DisplayPosts extends Component {
                 <FaThumbsUp />
                 {post.likes.items.length}
               </p>
+              {this.state.isHovering && (
+                <div className="users-liked">
+                  {this.state.postLikedBy.length === 0
+                    ? "No likes yet"
+                    : "Liked by: "}
+                  {this.state.postLikedBy.length === 0 ? (
+                    <FaSadTear />
+                  ) : (
+                    <UsersWhoLikedPost data={this.state.postLikedBy} />
+                  )}
+                </div>
+              )}
             </span>
           </span>
           <span>
