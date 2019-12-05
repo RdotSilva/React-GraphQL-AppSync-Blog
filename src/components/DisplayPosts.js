@@ -20,6 +20,8 @@ class DisplayPosts extends Component {
   state = {
     ownerId: "",
     ownerUsername: "",
+    errorMessage: "",
+    postLikedBy: [],
     isHovering: false,
     posts: []
   };
@@ -155,6 +157,7 @@ class DisplayPosts extends Component {
 
   render() {
     const { posts } = this.state;
+
     return posts.map(post => {
       return (
         <div className="posts" style={rowStyle} key={post.id}>
