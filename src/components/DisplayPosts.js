@@ -176,7 +176,7 @@ class DisplayPosts extends Component {
           <br />
           <span>
             {post.postOwnerId === loggedInUser && <DeletePost data={post} />}
-            {post.powerOwnerId === loggedInUser && <EditPost {...post} />}
+            {post.postOwnerId === loggedInUser && <EditPost {...post} />}
             <span>
               <p onClick={() => this.handleLike(post.id)}>
                 <FaThumbsUp />
