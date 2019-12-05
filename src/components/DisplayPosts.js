@@ -158,6 +158,8 @@ class DisplayPosts extends Component {
   render() {
     const { posts } = this.state;
 
+    let loggedInUser = this.state.ownerId;
+
     return posts.map(post => {
       return (
         <div className="posts" style={rowStyle} key={post.id}>
@@ -173,8 +175,8 @@ class DisplayPosts extends Component {
           <p>{post.postBody}</p>
           <br />
           <span>
-            <DeletePost data={post} />
-            <EditPost {...post} />
+            {post.postOwnerId === loggedInUser && <DeletePost data={post} />}
+            {post.powerOwnerId === loggedInUser && <EditPost {...post} />}
             <span>
               <p onClick={() => this.handleLike(post.id)}>
                 <FaThumbsUp />
