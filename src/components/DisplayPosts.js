@@ -15,6 +15,7 @@ import { createLike } from "../graphql/mutations";
 import CreateCommentPost from "./CreateCommentPost";
 import CommentPost from "./CommentPost";
 import { FaThumbsUp, FaSadTear } from "react-icons/fa";
+import UsersWhoLikedPost from "./UsersWhoLikedPost";
 
 class DisplayPosts extends Component {
   state = {
@@ -177,7 +178,8 @@ class DisplayPosts extends Component {
   };
 
   handleMouseHoverLeave = async () => {
-    this.setState({ isHovering: !this.state.isHovering, postLikedBy: [] });
+    this.setState({ isHovering: !this.state.isHovering });
+    this.setState({ postLikedBy: [] });
   };
 
   render() {
@@ -210,7 +212,9 @@ class DisplayPosts extends Component {
                 onMouseEnter={() => this.handleMouseHover(post.id)}
                 onMouseLeave={() => this.handleMouseHoverLeave()}
                 onClick={() => this.handleLike(post.id)}
-                style={{ color: post.likes.items.length > 0 ? "blue" : "gray" }}
+                style={{
+                  color: post.likes.items.length > 0 ? "blue" : "gray"
+                }}
                 className="like-button"
               >
                 <FaThumbsUp />
