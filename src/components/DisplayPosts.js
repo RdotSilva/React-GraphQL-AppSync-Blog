@@ -210,6 +210,8 @@ class DisplayPosts extends Component {
                 onMouseEnter={() => this.handleMouseHover(post.id)}
                 onMouseLeave={() => this.handleMouseHoverLeave()}
                 onClick={() => this.handleLike(post.id)}
+                style={{ color: post.likes.items.length > 0 ? "blue" : "gray" }}
+                className="like-button"
               >
                 <FaThumbsUp />
                 {post.likes.items.length}
