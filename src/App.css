@@ -147,6 +147,11 @@ button:hover {
   background-color: rgba(9, 123, 216, 0.808);
 }
 
+.like-button {
+  width: "25px";
+  cursor: pointer;
+}
+
 .App-link {
   color: #61dafb;
 }
