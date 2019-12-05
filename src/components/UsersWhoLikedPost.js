@@ -5,9 +5,9 @@ class UsersWhoLikedPost extends Component {
     const allUsers = this.props.data;
     return allUsers.map(user => {
       return (
-        <span key={user}>
+        <div key={user}>
           <span style={{ fontStyle: "bold", color: "#ged" }}>{user}</span>
-        </span>
+        </div>
       );
     });
   }
