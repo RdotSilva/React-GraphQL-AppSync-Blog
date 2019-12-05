@@ -176,6 +176,10 @@ class DisplayPosts extends Component {
     }
   };
 
+  handleMouseHoverLeave = async () => {
+    this.setState({ isHovering: !this.state.isHovering, postLikedBy: [] });
+  };
+
   render() {
     const { posts } = this.state;
 
@@ -204,6 +208,7 @@ class DisplayPosts extends Component {
               </p>
               <p
                 onMouseEnter={() => this.handleMouseHover(post.id)}
+                onMouseLeave={() => this.handleMouseHoverLeave()}
                 onClick={() => this.handleLike(post.id)}
               >
                 <FaThumbsUp />
